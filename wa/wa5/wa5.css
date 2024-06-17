@@ -1,0 +1,52 @@
+
+body {
+    background-image: url(battle.png);
+    align-content: center;
+
+}
+
+em {
+
+    font-size: 40px;
+    color: rgb(255, 0, 0);
+
+}
+
+b {
+
+    font-size: 40px;
+    color: rgb(0, 157, 255);
+
+}
+
+h1 {
+
+    position: absolute;
+    top: 40mm;
+    left: 25mm;
+    width: 280px;
+    height: 130px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 10px;
+    background-color: bisque;
+    font-size: 15px;
+
+}
+
+h2 {
+
+    position: absolute;
+    top: 150mm;
+    left: 290mm;
+    width: 300px;
+    height: 130px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(196, 255, 250);
+    font-size: 15px;
+
+}
