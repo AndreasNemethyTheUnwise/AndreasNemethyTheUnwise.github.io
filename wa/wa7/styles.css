@@ -18,20 +18,25 @@ body {
   }
   
   .grid {
+    grid-template-columns: 1fr 1fr;
     margin: 0 auto;
     padding: 0 20px;
     max-width: 980px;
+    display: flex;
   }
   
   nav {
     background-color: #000;
     padding: .5em;
+    
   }
   
   nav ul {
     margin: 0;
     padding: 0;
-    list-style: none;
+    list-style: grid;
+    display: flex;
+    position: sticky;
   }
   
   nav a {
@@ -44,6 +49,7 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+    padding-bottom: 1px;
   }
 
   .feature {
