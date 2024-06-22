@@ -13,7 +13,8 @@ nav{
     height:20px;
     background-color: rgb(44, 74, 57);
 }
-nav a{
+
+a{
     width:10vw;
     text-align: center;
     text-decoration: none;
