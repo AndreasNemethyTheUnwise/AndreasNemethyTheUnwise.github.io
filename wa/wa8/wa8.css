@@ -1,0 +1,66 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(58, 117, 118);
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+nav{
+    height: 50vh;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height:20px;
+    background-color: rgb(44, 74, 57);
+}
+nav a{
+    width:10vw;
+    text-align: center;
+    text-decoration: none;
+    color:rgb(255, 215, 151);
+    font-family:Georgia, serif;
+}
+
+a:hover {
+    transition-duration: 2s;
+    font-style: italic;
+    color: cyan;
+}
+
+
+img{
+    height: 30vh;
+}
+
+#red-ball{
+    background-color: rgb(164, 241, 255);
+    width: 20px;
+    height:20px;
+    border-radius: 50%;
+    position: absolute;
+    animation: red-ball-move 2s infinite;
+}
+
+@keyframes red-ball-move{
+    from {
+        margin: 0;
+        margin-top: 50%;
+    }
+
+    33% {
+        margin-left: 50%;
+        margin-top: 100%;
+        background-color: rgb(66, 216, 98);
+    }
+
+    66% {
+        margin-left: -50%;
+        margin-top: 100%;
+        background-color: rgb(235, 213, 123);
+    }
+
+    to {
+        margin:0;
+        margin-top: 50%;
+    }
+}
