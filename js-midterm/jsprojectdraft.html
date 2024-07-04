@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>World's Best phone# generator</title>
+    <style>
+
+        html {
+            /* background-image: "stockphotolol.jpg"; */
+            background-color: lightyellow;
+        }
+
+        .msgBox {     
+            width: 100px;
+        }
+
+        .msgBox p {
+            line-height: 1.5;
+            padding: 10px 20px;
+            color: black;
+            font-size: 2rem;
+            background-position: 25px center;
+            
+        }
+
+        .msgBox button {
+            background: white;
+            font-size: 1rem;
+            color: #aaa;
+        }
+
+    </style>
+  </head>
+  <body>
+    <!-- might change later on to where the number gets displayed as the page title but unsure on how to do that right now -->
+    <center><button>Generate new number</button></center>
+
+    <script>
+
+        const btn = document.querySelector("button");
+        btn.addEventListener("click", () =>
+        displayNum(Math.floor(Math.random() * 10))
+        );
+
+        function displayNum(msgText, msgType) {
+            const body = document.body;
+
+            const panel = document.createElement("div");
+            panel.setAttribute("class", "msgBox");
+            body.appendChild(panel);
+
+            const msg = document.createElement("p");
+            msg.textContent = msgText;
+            panel.appendChild(msg);
+
+            const closeBtn = document.createElement("button");
+            closeBtn.textContent = "x";
+            panel.appendChild(closeBtn);
+
+            closeBtn.addEventListener("click", () =>
+            panel.parentNode.removeChild(panel),
+            );
+
+            // Credit for random color: https://css-tricks.com/snippets/javascript/random-hex-color/
+            panel.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+
+            panel.style.backgroundBlendMode = lighten;
+            }
+
+    </script>
+  </body>
+</html>
