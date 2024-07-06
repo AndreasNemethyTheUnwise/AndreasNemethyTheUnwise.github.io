@@ -1,0 +1,36 @@
+body {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color:blanchedalmond;
+    text-align: center;
+}
+
+.quoteBox {
+    margin: 100px;
+    padding: 20px;
+    background: tan;
+    max-width: 500px;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 20px;
+    font-size: 20px;
+    margin: 10px;
+    background: yellow;
+    color: black;
+}
+
+button:hover {
+    background: yellowgreen;
+    color: white;
+}
+
+.description {
+    margin: 50px;
+    font-size: 15px;
+    color: grey;
+}
