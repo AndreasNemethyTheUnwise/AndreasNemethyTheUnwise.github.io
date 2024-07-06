@@ -5,8 +5,11 @@ body {
 }
 
 .quoteBox {
-    margin: 100px;
+    margin-top: 100px;
     padding: 20px;
+    padding-left: 35%;
+    padding-right: 35%;
+    text-align: center;
     background: tan;
     max-width: 500px;
 }
