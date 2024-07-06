@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>(</title>
+    <style>
+
+        html, body {
+            margin: 0;
+            background-color: black;
+        }
+        
+        
+        body {
+            width: inherit;
+            height: inherit;
+            padding-top: 20px;
+        }
+
+        button {
+            color: black;
+            font-size: large;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-color: blanchedalmond;
+            margin-left: 4%;
+            margin-right: 4%;
+        }
+        
+        
+
+    </style>
+  </head>
+  <body>
+        <center>
+            <button><button1>Increase Balls</button1></button>
+            <button><button2>Decrease Balls</button2></button>
+            <button><add>Add: <bounce>0</bounce></add></button>
+            <button><reset>Reset</reset></button>    
+        </center>
+
+        <canvas></canvas>
+
+    <script>
+
+    let ballNum = 1;
+    let numBounce = 0;
+
+
+        // function randomWhole(min, max) {
+        // return Math.round(Math.floor(Math.random() * (max - min + 1)) + min);
+        // }
+
+        const btn1 = document.querySelector("button1");
+        btn1.addEventListener("click", () =>
+        spawnBalls(ballNum++)
+        );
+
+        const btn2 = document.querySelector("button2");
+        btn2.addEventListener("click", () =>
+        spawnBalls(ballNum--)
+        );
+
+        const add = document.querySelector("add");
+        add.addEventListener("click", () =>
+        addNumBounce(numBounce)
+        );
+
+        const reset = document.querySelector("reset");
+        reset.addEventListener("click", () =>
+        resetTitle()
+        );
+
+
+
+        function addNumBounce(numBounce) {
+            // let tITLE = title + itos(numBounce);
+            if (document.querySelector('title').textContent.length < 14) {
+                document.querySelector('title').append(numBounce);
+                if (document.querySelector('title').textContent.length == 4) {
+                    document.querySelector('title').append(")-");
+                }
+                else if (document.querySelector('title').textContent.length == 9) {
+                    document.querySelector('title').append("-");
+                }
+            }
+        }
+
+        function resetTitle() {
+            ballNum = 1;
+            numBounce = 0;
+            tITLE = "(";            
+            document.querySelector('title').textContent = tITLE;
+            document.querySelector('bounce').textContent = numBounce;
+        }
+
+
+
+       // setup canvas
+
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+
+        const width = (canvas.width = window.innerWidth - 15);
+        const height = (canvas.height = window.innerHeight - 51);
+
+        // function to generate random number
+
+        function random(min, max) {
+            let speed = Math.floor(Math.random() * (max - min + 1)) + min;
+            if (speed == 0) {
+                return speed+1;
+            }
+            else {
+                return speed;
+            }
+        }
+
+        // function to generate random color
+
+        function randomRGB() {
+        return `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;
+        }
+
+
+
+        // Ball stuff
+
+        class Ball {
+            constructor(x, y, velX, velY, color, size) {
+            this.x = x;
+            this.y = y;
+            this.velX = velX;
+            this.velY = velY;
+            this.color = color;
+            this.size = size;
+            }
+
+
+            draw() {
+                ctx.beginPath();
+                ctx.fillStyle = this.color;
+                ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+
+            update() {
+                if ((this.x + this.size) >= width) {
+                this.velX = -(this.velX);
+                numBounce++;
+                document.querySelector('bounce').textContent = numBounce;
+                }
+            
+                if ((this.x - this.size) <= 0) {
+                this.velX = -(this.velX);
+                numBounce++;
+                document.querySelector('bounce').textContent = numBounce;
+                }
+            
+                if ((this.y + this.size) >= height) {
+                this.velY = -(this.velY);
+                numBounce++;
+                document.querySelector('bounce').textContent = numBounce;
+                }
+            
+                if ((this.y - this.size) <= 0) {
+                this.velY = -(this.velY);
+                numBounce++;
+                document.querySelector('bounce').textContent = numBounce;
+                }
+            
+                this.x += this.velX;
+                this.y += this.velY;
+
+                if (numBounce >= 9) {
+                    numBounce -= 9;
+                }
+                
+            }
+
+
+            collisionDetect() {
+                for (const ball of balls) {
+                if (this !== ball) {
+                    const dx = this.x - ball.x;
+                    const dy = this.y - ball.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+            
+                    if (distance < this.size + ball.size) {
+                        // ball.color = this.color = randomRGB();
+                        this.velX = -(this.velX)+random(-1, 1);
+                        ball.velY = -(ball.velY)+random(-1, 1);
+                    }
+                }
+                }
+            }
+
+        }
+            
+
+        let balls = [];
+
+        function spawnBalls (ballNum) {
+                numBounce = 0;
+                balls = null;
+                balls = [];
+                while (balls.length < ballNum) {
+                    const size = 100/(ballNum);
+                    const ball = new Ball(
+                        // ball position always drawn at least one ball width
+                        // away from the edge of the canvas, to avoid drawing errors
+                        random(0 + size, width - size),
+                        random(0 + size, height - size),
+                        random(-50, 50)/size,
+                        random(-50, 50)/size,
+                        randomRGB(),
+                        size,
+                    );
+
+                    balls.push(ball);
+                }
+                document.querySelector('bounce').textContent = numBounce;
+        }
+
+
+        function loop() {
+            ctx.fillStyle = "rgb(0 0 0 / 25%)";
+            ctx.fillRect(0, 0, width, height);
+        
+            if (balls.length != ballNum) {
+                spawnBalls(ballNum);
+            }
+
+            for (const ball of balls) {
+            ball.draw();
+            ball.update();
+            ball.collisionDetect();
+            }
+        
+            requestAnimationFrame(loop);
+        }
+
+
+
+        loop();
+
+    </script>
+  </body>
+</html>
